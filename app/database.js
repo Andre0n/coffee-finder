@@ -38,7 +38,7 @@ export const initDatabase = async () => {
   const adminPassword = process.env.ADMIN_PASSWORD;
   bcrypt.hash(adminPassword, 10).then(async (hash) => {
     await connection.query(
-      `INSERT INTO users (username, password) VALUES ('admin', '${hash}');`,
+      `INSERT INTO admins (username, password) VALUES ('admin', '${hash}');`,
     );
     console.log('Database initialized and admin user created');
   });

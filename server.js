@@ -2,6 +2,8 @@ import { createServer } from 'node:http';
 
 const server = createServer();
 
+server.on('request', router);
+
 server.on('error', (err) => {
   console.error(err);
 });

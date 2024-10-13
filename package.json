@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
     "mysql2": "^3.11.3",
     "sql-bricks": "^3.0.1"
   }

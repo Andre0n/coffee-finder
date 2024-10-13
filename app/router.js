@@ -1,3 +1,4 @@
+import { home } from "./home/home.controller.js";
 const routes = [
   {
     name: '/',

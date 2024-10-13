@@ -13,10 +13,8 @@ const contentTypes = {
 
 export const staticFiles = (request, response) => {
   const { url } = request;
-
   const extension = extname(url).slice(1);
   const path = resolve(`./${url}`);
-  console.log(path);
 
   stat(path, (err, stats) => {
     if (err) {

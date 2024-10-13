@@ -1,4 +1,5 @@
-import { home } from "./home/home.controller.js";
+import { URL } from 'node:url';
+import { home } from './home/home.controller.js';
 import { staticFiles } from './static/static.controller.js';
 
 const urlFilePattern = /\/public\/([\w-]+\/)*[\w-]+\.[a-z]+$/;
@@ -13,13 +14,14 @@ const routes = [
 
 const router = (request, response) => {
   const { url, method } = request;
+  const { pathname } = new URL(url, `http://${request.headers.host}`);
 
   if (urlFilePattern.test(url)) {
     return staticFiles(request, response);
   }
 
   const route = routes.find(
-    (route) => route.name === url && route.method === method,
+    (route) => route.name === pathname && route.method === method,
   );
 
   if (route) {

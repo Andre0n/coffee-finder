@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import router from './app/router.js';
 
 const server = createServer();
 

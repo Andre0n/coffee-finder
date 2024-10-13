@@ -1,0 +1,7 @@
+services:
+  databse:
+    container_name: mysql-node
+    image: mysql:lts
+    env_file: .env
+    ports:
+      - "3306:3306"

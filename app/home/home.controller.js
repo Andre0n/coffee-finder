@@ -15,5 +15,9 @@ export const home = (request, response) => {
     }
   }
 
-  return render(response, 'index.html');
+  const data = {
+    page: 'Home',
+  };
+
+  return render(response, 'index.ejs', data);
 };

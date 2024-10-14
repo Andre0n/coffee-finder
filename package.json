@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start:dev": "node --watch -- server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate": "node migrate.js"
   },
   "keywords": [],
   "author": "André Gabriel <github.com/andre0n>",

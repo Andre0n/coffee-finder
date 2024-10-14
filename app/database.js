@@ -48,3 +48,7 @@ export const initDatabase = async () => {
 
   await createAdmin();
 };
+
+export const closeConnection = async () => {
+  await connection.end();
+};

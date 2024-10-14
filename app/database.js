@@ -8,10 +8,21 @@ const connection = await mysql.createConnection({
   password: process.env.DB_PASSWORD,
 });
 
-export const initDatabase = async () => {
-  await connection.query(`drop table if exists admins;`);
-  await connection.query(`drop table if exists coffe_shops;`);
+export const dropTables = async () => {
+  await connection.query('DROP TABLE coffe_shops');
+  await connection.query('DROP TABLE admins');
+};
 
+export const createAdmin = async () => {
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin';
+  const hash = await bcrypt.hash(adminPassword, 10);
+  await connection.query(`
+    INSERT INTO admins (username, password)
+    VALUES ('admin', '${hash}');
+  `);
+};
+
+export const initDatabase = async () => {
   await connection.query(`
     CREATE TABLE IF NOT EXISTS admins (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,11 +46,5 @@ export const initDatabase = async () => {
     );
   `);
 
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  bcrypt.hash(adminPassword, 10).then(async (hash) => {
-    await connection.query(
-      `INSERT INTO admins (username, password) VALUES ('admin', '${hash}');`,
-    );
-    console.log('Database initialized and admin user created');
-  });
+  await createAdmin();
 };

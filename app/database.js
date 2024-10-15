@@ -49,6 +49,11 @@ export const initDatabase = async () => {
   await createAdmin();
 };
 
+export const execute = async (query) => {
+  const [rows] = await connection.query(query);
+  return rows;
+};
+
 export const closeConnection = async () => {
   await connection.end();
 };
